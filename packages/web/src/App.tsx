@@ -4,10 +4,15 @@ import logo from './logo.svg';
 import './App.css';
 
 const App: React.FC = () => {
-  function onClick() {
-    axios.get('http://localhost:3001/').then(res => {
-      console.log(res);
-    });
+  // function onClick() {
+  //   axios.get('http://localhost:3001/').then(res => {
+  //     console.log(res);
+  //   });
+  // }
+
+  async function onClick() {
+    const res = await axios.get('/api');
+    console.log(res);
   }
 
   return (

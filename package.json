@@ -5,6 +5,7 @@
   "repository": "https://github.com/yikeda6616/tempus.git",
   "author": "Yasushi Ikeda <yikeda6616@gmail.com>",
   "license": "MIT",
+  "private": true,
   "devDependencies": {
     "husky": "^2.2.0",
     "lint-staged": "^8.1.6",
@@ -25,5 +26,10 @@
     "printWidth": 120,
     "singleQuote": true,
     "trailingComma": "all"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
   }
 }

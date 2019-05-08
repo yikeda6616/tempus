@@ -1,0 +1,29 @@
+{
+  "name": "tempus",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/yikeda6616/tempus.git",
+  "author": "Yasushi Ikeda <yikeda6616@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^2.2.0",
+    "lint-staged": "^8.1.6",
+    "prettier": "^1.17.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "trailingComma": "all"
+  }
+}

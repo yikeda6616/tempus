@@ -1,6 +1,7 @@
 import * as express from 'express';
 import { createConnection, Connection, getRepository } from 'typeorm';
 import { User } from './entities/User';
+import { UserTodo } from './entities/UserTodo';
 
 const app = express();
 
@@ -29,6 +30,16 @@ handler.post('/user', async (req, res) => {
   user.id = 1;
   user.name = 'test';
   await getRepository(User).insert(user);
+  res.send('success');
+});
+
+handler.post('/todo', async (req, res) => {
+  const todo = new UserTodo();
+  todo.uid = 1;
+
+  todo.name = 'testtodo';
+  todo.createdAt = new Date();
+  await getRepository(UserTodo).insert(todo);
   res.send('success');
 });
 

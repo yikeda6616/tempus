@@ -5,8 +5,8 @@ export class UserTodo {
   @PrimaryColumn()
   uid: number;
 
-  @PrimaryGeneratedColumn()
-  tid: number;
+  @PrimaryGeneratedColumn('uuid')
+  tid: string;
 
   @Column()
   name: string;

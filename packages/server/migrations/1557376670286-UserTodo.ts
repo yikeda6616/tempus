@@ -13,9 +13,8 @@ export class UserTodo1557376670286 implements MigrationInterface {
           },
           {
             name: 'tid',
-            type: 'int',
+            type: 'varchar',
             isPrimary: true,
-            generationStrategy: 'increment',
           },
           { name: 'name', type: 'varchar' },
           {

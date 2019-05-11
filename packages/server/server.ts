@@ -66,22 +66,16 @@ handler.delete('/user/:uid', async (req, res) => {
 // Create todo
 handler.post('/todo', async (req, res) => {
   const todo = new UserTodo();
+  todo.uid = 1;
   todo.name = req.body.name;
   todo.createdAt = new Date();
   await getRepository(UserTodo).insert(todo);
   res.send(todo);
 });
 
-// Show every todos related to the user
-handler.get('/todo/:uid', async (req, res) => {
-  const todo = await getRepository(UserTodo).find({
-    uid: req.params.uid,
-  });
-  res.send(todo);
-});
-
 // Show one todo
 handler.get('/todo/:tid', async (req, res) => {
+  console.log('hallo');
   const todo = await getRepository(UserTodo).findOne({
     uid: 1,
     tid: req.params.tid,
@@ -93,7 +87,7 @@ handler.get('/todo/:tid', async (req, res) => {
 handler.put('/todo/:tid', async (req, res) => {
   await getRepository(UserTodo).update(
     {
-      uid: 2,
+      uid: 1,
       tid: req.params.tid,
     },
     {
@@ -106,7 +100,7 @@ handler.put('/todo/:tid', async (req, res) => {
 // Delete todo
 handler.delete('/todo/:tid', async (req, res) => {
   await getRepository(UserTodo).delete({
-    uid: 2,
+    uid: 1,
     tid: req.params.tid,
   });
   res.send('success');

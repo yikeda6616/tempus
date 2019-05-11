@@ -1,10 +1,7 @@
+// Set your brand colors
+// Update Bulma's global variables
+$black: #fff;
+$grey-dark: #eee;
+$white: #282c34;
+// Import the rest of Bulma
 @import '../../../node_modules/bulma/bulma.sass';
-
-// Dark mode setting
-html {
-  background-color: #282c34;
-}
-
-body {
-  color: #fff;
-}

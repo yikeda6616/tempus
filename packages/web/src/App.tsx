@@ -5,7 +5,11 @@ import './App.scss';
 const App: React.FC = () => {
   return (
     <div className="wrapper">
-      <header>header here</header>
+      <header>
+        <nav className="navbar">
+          <div className="navbar-brand">Tempus</div>
+        </nav>
+      </header>
     </div>
   );
 };

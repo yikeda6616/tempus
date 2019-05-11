@@ -26,20 +26,61 @@ app.use(express.json());
 
 const handler = express();
 
+// Create user
 handler.post('/user', async (req, res) => {
   const user = new User();
-  user.name = 'test';
+  user.name = req.body.name;
   await getRepository(User).insert(user);
   res.send('success');
 });
 
-handler.get('/todo', async (req, res) => {
+// Show user
+handler.get('/user/:uid', async (req, res) => {
+  const user = await getRepository(User).find({
+    id: req.params.uid,
+  });
+  res.send(user);
+});
+
+// Edit user
+handler.put('/user/:uid', async (req, res) => {
+  await getRepository(User).update(
+    {
+      id: req.params.uid,
+    },
+    {
+      name: req.body.name,
+    },
+  );
+  res.send('success');
+});
+
+// Delete user
+handler.delete('/user/:uid', async (req, res) => {
+  await getRepository(User).delete({
+    id: req.params.uid,
+  });
+  res.send('success');
+});
+
+// Create todo
+handler.post('/todo', async (req, res) => {
+  const todo = new UserTodo();
+  todo.name = req.body.name;
+  todo.createdAt = new Date();
+  await getRepository(UserTodo).insert(todo);
+  res.send(todo);
+});
+
+// Show every todos related to the user
+handler.get('/todo/:uid', async (req, res) => {
   const todo = await getRepository(UserTodo).find({
-    uid: 1,
+    uid: req.params.uid,
   });
   res.send(todo);
 });
 
+// Show one todo
 handler.get('/todo/:tid', async (req, res) => {
   const todo = await getRepository(UserTodo).findOne({
     uid: 1,
@@ -48,16 +89,7 @@ handler.get('/todo/:tid', async (req, res) => {
   res.send(todo);
 });
 
-handler.post('/todo', async (req, res) => {
-  console.log(req.body);
-  const todo = new UserTodo();
-  todo.uid = 2;
-  todo.name = req.body.name;
-  todo.createdAt = new Date();
-  await getRepository(UserTodo).insert(todo);
-  res.send(todo);
-});
-
+// Edit todo
 handler.put('/todo/:tid', async (req, res) => {
   await getRepository(UserTodo).update(
     {
@@ -71,6 +103,7 @@ handler.put('/todo/:tid', async (req, res) => {
   res.send('success');
 });
 
+// Delete todo
 handler.delete('/todo/:tid', async (req, res) => {
   await getRepository(UserTodo).delete({
     uid: 2,

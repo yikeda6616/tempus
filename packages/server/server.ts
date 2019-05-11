@@ -2,6 +2,8 @@ import * as express from 'express';
 import { createConnection, Connection, getRepository } from 'typeorm';
 import { User } from './entities/User';
 import { UserTodo } from './entities/UserTodo';
+import * as user from './handlers/user';
+import { handler } from './handlers';
 const app = express();
 
 const PORT = 3001;
@@ -23,45 +25,6 @@ app.use(express.json());
     console.log(`App listening on port ${PORT}`);
   });
 })();
-
-const handler = express();
-
-// Create user
-handler.post('/user', async (req, res) => {
-  const user = new User();
-  user.name = req.body.name;
-  await getRepository(User).insert(user);
-  res.send('success');
-});
-
-// Show user
-handler.get('/user/:uid', async (req, res) => {
-  const user = await getRepository(User).find({
-    id: req.params.uid,
-  });
-  res.send(user);
-});
-
-// Edit user
-handler.put('/user/:uid', async (req, res) => {
-  await getRepository(User).update(
-    {
-      id: req.params.uid,
-    },
-    {
-      name: req.body.name,
-    },
-  );
-  res.send('success');
-});
-
-// Delete user
-handler.delete('/user/:uid', async (req, res) => {
-  await getRepository(User).delete({
-    id: req.params.uid,
-  });
-  res.send('success');
-});
 
 // Create todo
 handler.post('/todo', async (req, res) => {

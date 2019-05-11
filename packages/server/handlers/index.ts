@@ -1,13 +1,16 @@
 import * as express from 'express';
 export const handler = express();
 
-export function post(url: string) {
-  return (target, property) => {
-    handler.post(url, async (req, res) => {
-      await target[property](req.body);
-      res.send('success');
+function createMethod(method: string) {
+  return (url: string) => (target, property) => {
+    handler[method](url, async (req, res) => {
+      const result = await target[property](req.body);
+      res.send(result || 'success');
     });
   };
 }
 
-import './user';
+export const get = createMethod('get');
+export const post = createMethod('post');
+
+import './UserHandler';

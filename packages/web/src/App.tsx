@@ -1,17 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import './App.scss';
+import { Header } from './components/Header/Header';
 
 const App: React.FC = () => {
-  return (
-    <div className="wrapper">
-      <header>
-        <nav className="navbar">
-          <div className="navbar-brand">Tempus</div>
-        </nav>
-      </header>
-    </div>
-  );
+  return <Header />;
 };
 
 export default App;

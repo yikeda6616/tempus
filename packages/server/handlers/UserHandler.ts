@@ -1,5 +1,5 @@
-import { User } from '../entities/User';
-import { UserService } from '../services/UserService';
+import { User } from '../entities';
+import { UserService } from '../services';
 import { Post, Get, Put } from '.';
 
 interface CreateRequest {

@@ -25,47 +25,27 @@ app.use(express.json());
   });
 })();
 
-// Create todo
-handler.post('/todo', async (req, res) => {
-  const todo = new UserTodo();
-  todo.uid = 1;
-  todo.name = req.body.name;
-  todo.createdAt = new Date();
-  await getRepository(UserTodo).insert(todo);
-  res.send(todo);
-});
+// // Edit todo
+// handler.put('/todo/:tid', async (req, res) => {
+//   await getRepository(UserTodo).update(
+//     {
+//       uid: 1,
+//       tid: req.params.tid,
+//     },
+//     {
+//       name: req.body.name,
+//     },
+//   );
+//   res.send('success');
+// });
 
-// Show one todo
-handler.get('/todo/:tid', async (req, res) => {
-  console.log('hallo');
-  const todo = await getRepository(UserTodo).findOne({
-    uid: 1,
-    tid: req.params.tid,
-  });
-  res.send(todo);
-});
-
-// Edit todo
-handler.put('/todo/:tid', async (req, res) => {
-  await getRepository(UserTodo).update(
-    {
-      uid: 1,
-      tid: req.params.tid,
-    },
-    {
-      name: req.body.name,
-    },
-  );
-  res.send('success');
-});
-
-// Delete todo
-handler.delete('/todo/:tid', async (req, res) => {
-  await getRepository(UserTodo).delete({
-    uid: 1,
-    tid: req.params.tid,
-  });
-  res.send('success');
-});
+// // Delete todo
+// handler.delete('/todo/:tid', async (req, res) => {
+//   await getRepository(UserTodo).delete({
+//     uid: 1,
+//     tid: req.params.tid,
+//   });
+//   res.send('success');
+// });
 
 app.use('/api', handler);

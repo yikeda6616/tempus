@@ -9,4 +9,12 @@ export class UserTodoService {
   static async get(tid: string) {
     await UserTodoRepository.get(tid);
   }
+
+  static async update(tid: string, name: string) {
+    await UserTodoRepository.update(tid, name);
+  }
+
+  static async delete(tid: string) {
+    await UserTodoRepository.delete(tid);
+  }
 }

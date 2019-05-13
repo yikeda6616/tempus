@@ -1,6 +1,5 @@
 import * as express from 'express';
-import { createConnection, getRepository } from 'typeorm';
-import { UserTodo } from './entities/';
+import { createConnection } from 'typeorm';
 import { handler } from './handlers';
 
 const app = express();
@@ -24,28 +23,5 @@ app.use(express.json());
     console.log(`App listening on port ${PORT}`);
   });
 })();
-
-// // Edit todo
-// handler.put('/todo/:tid', async (req, res) => {
-//   await getRepository(UserTodo).update(
-//     {
-//       uid: 1,
-//       tid: req.params.tid,
-//     },
-//     {
-//       name: req.body.name,
-//     },
-//   );
-//   res.send('success');
-// });
-
-// // Delete todo
-// handler.delete('/todo/:tid', async (req, res) => {
-//   await getRepository(UserTodo).delete({
-//     uid: 1,
-//     tid: req.params.tid,
-//   });
-//   res.send('success');
-// });
 
 app.use('/api', handler);

@@ -1,6 +1,6 @@
 import { User } from '../entities';
 import { UserService } from '../services';
-import { Post, Get, Put } from '.';
+import { Post, Get, Put, Delete } from '.';
 
 interface CreateRequest {
   name: string;

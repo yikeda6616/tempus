@@ -9,4 +9,23 @@ export class UserTodoRepository {
   static async get(tid: string) {
     return await getRepository(UserTodo).findOne({ uid: 1, tid });
   }
+
+  static async update(tid: string, name: string) {
+    return await getRepository(UserTodo).update(
+      {
+        uid: 1,
+        tid,
+      },
+      {
+        name,
+      },
+    );
+  }
+
+  static async delete(tid: string) {
+    return await getRepository(UserTodo).delete({
+      uid: 1,
+      tid,
+    });
+  }
 }

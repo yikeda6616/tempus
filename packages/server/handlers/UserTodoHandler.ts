@@ -1,4 +1,4 @@
-import { Post, Get, Put } from '.';
+import { Post, Get, Put, Delete } from '.';
 import { UserTodo } from '../entities';
 import { UserTodoService } from '../services/UserTodoService';
 
@@ -9,6 +9,15 @@ interface CreateRequest {
 }
 
 interface GetRequest {
+  tid: string;
+}
+
+interface PutRequest {
+  tid: string;
+  name: string;
+}
+
+interface DeleteRequest {
   tid: string;
 }
 
@@ -25,5 +34,15 @@ class UserTodoHandler {
   @Get('/todo/:tid')
   static async get(params: GetRequest) {
     return await UserTodoService.get(params.tid);
+  }
+
+  @Put('/todo/:tid')
+  static async update(params: PutRequest) {
+    return await UserTodoService.update(params.tid, params.name);
+  }
+
+  @Delete('/todo/:tid')
+  static async delete(params: DeleteRequest) {
+    return await UserTodoService.delete(params.tid);
   }
 }

@@ -4,10 +4,13 @@ export const handler = express();
 function createMethod(method: string) {
   return (url: string) => (target, property) => {
     handler[method](url, async (req, res) => {
+      // Merge query and body to one object
       const params = {
+        ...req.params,
         ...req.query,
         ...req.body,
       };
+
       const result = await target[property](params);
       res.send(result || 'success');
     });

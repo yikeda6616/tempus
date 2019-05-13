@@ -7,7 +7,7 @@ export class UserTodoService {
   }
 
   static async get(tid: string) {
-    await UserTodoRepository.get(tid);
+    return await UserTodoRepository.get(tid);
   }
 
   static async update(tid: string, name: string) {

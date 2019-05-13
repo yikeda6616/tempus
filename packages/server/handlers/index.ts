@@ -10,9 +10,12 @@ function createMethod(method: string) {
         ...req.query,
         ...req.body,
       };
-
-      const result = await target[property](params);
-      res.send(result || 'success');
+      try {
+        const result = await target[property](params);
+        res.send(result || 'success');
+      } catch (err) {
+        res.status(400).send(err.message);
+      }
     });
   };
 }

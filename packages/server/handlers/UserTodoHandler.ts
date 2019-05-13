@@ -1,8 +1,15 @@
 import { Post, Get, Put, Delete } from '.';
 import { UserTodo } from '../entities';
 import { UserTodoService } from '../services/UserTodoService';
+import * as Ajv from 'ajv';
 
-const uid = 1;
+const schema = {
+  type: 'string',
+  maxLength: 36,
+  minLength: 36,
+};
+
+const ajv = new Ajv();
 
 interface CreateRequest {
   name: string;
@@ -33,6 +40,10 @@ class UserTodoHandler {
 
   @Get('/todo/:tid')
   static async get(params: GetRequest) {
+    const valid = ajv.validate(schema, params.tid);
+    if (!valid) {
+      throw new Error(ajv.errorsText());
+    }
     return await UserTodoService.get(params.tid);
   }
 

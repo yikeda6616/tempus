@@ -10,7 +10,8 @@ function createMethod(method: string) {
   };
 }
 
-export const get = createMethod('get');
-export const post = createMethod('post');
+export const Get = createMethod('get');
+export const Post = createMethod('post');
+export const Put = createMethod('put');
 
 import './UserHandler';

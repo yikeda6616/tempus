@@ -1,7 +1,8 @@
 import * as express from 'express';
-import { createConnection, Connection, getRepository } from 'typeorm';
-import { UserTodo } from './entities/UserTodo';
+import { createConnection, getRepository } from 'typeorm';
+import { UserTodo } from './entities/';
 import { handler } from './handlers';
+
 const app = express();
 
 const PORT = 3001;

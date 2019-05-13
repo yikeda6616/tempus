@@ -9,4 +9,8 @@ export class UserService {
   static async get(id: number) {
     return await UserRepository.get(id);
   }
+
+  static async update(id: number) {
+    return await UserRepository.update(id);
+  }
 }

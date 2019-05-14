@@ -4,9 +4,14 @@ import { UserTodoService } from '../services/UserTodoService';
 import * as Ajv from 'ajv';
 
 const schema = {
-  type: 'string',
-  maxLength: 36,
-  minLength: 36,
+  required: ['tid'],
+  properties: {
+    tid: {
+      type: 'string',
+      maxLength: 36,
+      minLength: 36,
+    },
+  },
 };
 
 const ajv = new Ajv();
@@ -33,6 +38,7 @@ class UserTodoHandler {
   static async create(params: CreateRequest) {
     const todo = new UserTodo();
     todo.uid = 3; // TODO:
+    // TODO: Add ajv validation
     todo.name = params.name;
     todo.createdAt = new Date();
     await UserTodoService.create(todo);
@@ -40,10 +46,9 @@ class UserTodoHandler {
 
   @Get('/todo/:tid')
   static async get(params: GetRequest) {
-    const valid = ajv.validate(schema, params.tid);
-    if (!valid) {
-      throw new Error(ajv.errorsText());
-    }
+    const valid = ajv.validate(schema, params);
+    if (!valid) throw new Error(ajv.errorsText());
+
     return await UserTodoService.get(params.tid);
   }
 

@@ -6,7 +6,7 @@ import * as Ajv from 'ajv';
 const ajv = new Ajv();
 
 // Validation schema
-const schema = {
+const createSchema = {
   required: ['name'],
   properties: {
     name: {
@@ -18,7 +18,7 @@ const schema = {
 };
 
 // Validation schema
-const schema = {
+const getSchema = {
   required: ['tid'],
   properties: {
     tid: {
@@ -53,7 +53,7 @@ class UserTodoHandler {
     todo.uid = 3; // TODO: Change from hardcode
 
     // Validate data(params)
-    const valid = ajv.validate(schema, params);
+    const valid = ajv.validate(createSchema, params);
     if (!valid) throw new Error(ajv.errorsText());
 
     todo.name = params.name;
@@ -64,7 +64,7 @@ class UserTodoHandler {
   @Get('/todo/:tid')
   static async get(params: GetRequest) {
     // Validate data(params)
-    const valid = ajv.validate(schema, params);
+    const valid = ajv.validate(getSchema, params);
     if (!valid) throw new Error(ajv.errorsText());
     return await UserTodoService.get(params.tid);
   }

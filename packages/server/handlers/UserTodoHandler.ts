@@ -5,6 +5,30 @@ import * as Ajv from 'ajv';
 
 const ajv = new Ajv();
 
+// Validation schema
+const schema = {
+  required: ['name'],
+  properties: {
+    name: {
+      type: 'string',
+      maxLength: 140,
+      minLength: 1,
+    },
+  },
+};
+
+// Validation schema
+const schema = {
+  required: ['tid'],
+  properties: {
+    tid: {
+      type: 'string',
+      maxLength: 36,
+      minLength: 36,
+    },
+  },
+};
+
 interface CreateRequest {
   name: string;
 }
@@ -28,18 +52,6 @@ class UserTodoHandler {
     const todo = new UserTodo();
     todo.uid = 3; // TODO: Change from hardcode
 
-    // Validation schema
-    const schema = {
-      required: ['name'],
-      properties: {
-        name: {
-          type: 'string',
-          maxLength: 140,
-          minLength: 1,
-        },
-      },
-    };
-
     // Validate data(params)
     const valid = ajv.validate(schema, params);
     if (!valid) throw new Error(ajv.errorsText());
@@ -51,18 +63,6 @@ class UserTodoHandler {
 
   @Get('/todo/:tid')
   static async get(params: GetRequest) {
-    // Validation schema
-    const schema = {
-      required: ['tid'],
-      properties: {
-        tid: {
-          type: 'string',
-          maxLength: 36,
-          minLength: 36,
-        },
-      },
-    };
-
     // Validate data(params)
     const valid = ajv.validate(schema, params);
     if (!valid) throw new Error(ajv.errorsText());

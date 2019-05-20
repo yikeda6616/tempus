@@ -1,7 +1,8 @@
 import React from 'react';
-import { getTodo } from '../actions/todo';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+import { getTodo } from '../actions/todo';
 
 const App: React.FC = (props: any) => {
   return (

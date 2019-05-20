@@ -4,7 +4,7 @@ interface TodoState {
   name: string;
 }
 
-export default function reducer(state: TodoState = { name: '' }, action: any): TodoState {
+export default function reducer(state: TodoState = { name: '' }, action: { type: string; name: string }): TodoState {
   switch (action.type) {
     case GET_TODO:
       return { ...state, name: action.name };

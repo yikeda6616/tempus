@@ -1,6 +1,6 @@
 import { GET_TODO, CREATE_TODO } from '../actions/todo';
 
-interface TodoState {
+export interface TodoState {
   name: string;
 }
 

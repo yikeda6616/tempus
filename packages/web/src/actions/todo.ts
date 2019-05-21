@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Dispatch } from 'redux';
 
 export const GET_TODO = 'GET_TODO';
 export const CREATE_TODO = 'CREATE_TODO';
@@ -15,7 +16,7 @@ export function getTodo() {
 }
 
 export function createTodo(name: string) {
-  return async (dispatch: any) => {
+  return async (dispatch: Dispatch) => {
     await axios.post('api/todo/', { name: name });
 
     dispatch({

@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, Dispatch } from 'redux';
 
 import { getTodo, createTodo } from '../actions/todo';
+import { TodoState } from '../reducers/todo';
 
 const App: React.FC = (props: any) => {
-  const [localState, setKeyword] = useState({ keyword: '' });
-  console.log(localState);
+  const [keyword, setKeyword] = useState('');
+  console.log(keyword);
+
   return (
-    <div>
+    <div className="container">
       <p onClick={props.getTodo}>getTodo: {props.name}</p>
       <p onClick={props.createTodo}>createTodo</p>
-      <input type="text" value={localState.keyword} onChange={e => setKeyword({ keyword: e.target.value })} />
-      <button onClick={() => props.createTodo(localState.keyword)}>addTodo</button>
+      <input type="text" value={keyword} onChange={e => setKeyword(e.target.value)} />
+      <button onClick={() => props.createTodo(keyword)}>addTodo</button>
     </div>
   );
 };
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: TodoState) => ({
   name: state.name,
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   getTodo: bindActionCreators(getTodo, dispatch),
   createTodo: bindActionCreators(createTodo, dispatch),
 });

@@ -1,4 +1,5 @@
 import * as express from 'express';
+
 export const handler = express();
 
 function createMethod(method: string) {

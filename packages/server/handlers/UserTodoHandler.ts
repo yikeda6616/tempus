@@ -1,7 +1,8 @@
+import * as Ajv from 'ajv';
+
 import { Post, Get, Put, Delete } from '.';
 import { UserTodo } from '../entities';
 import { UserTodoService } from '../services/UserTodoService';
-import * as Ajv from 'ajv';
 
 const ajv = new Ajv();
 

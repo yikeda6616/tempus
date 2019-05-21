@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getTodo, createTodo, inputTodo } from '../actions/todo';
+import { getTodo, createTodo } from '../actions/todo';
 
 const App: React.FC = (props: any) => {
   const [localState, setKeyword] = useState({ keyword: '' });
-
-  console.log(localState, props);
-
+  console.log(localState);
   return (
     <div>
       <p onClick={props.getTodo}>getTodo: {props.name}</p>
@@ -21,13 +19,11 @@ const App: React.FC = (props: any) => {
 
 const mapStateToProps = (state: any) => ({
   name: state.name,
-  keyword: state.keyword,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
   getTodo: bindActionCreators(getTodo, dispatch),
   createTodo: bindActionCreators(createTodo, dispatch),
-  inputTodo: bindActionCreators(inputTodo, dispatch),
 });
 
 export default connect(

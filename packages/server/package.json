@@ -20,6 +20,6 @@
     "express": "^4.16.4",
     "mysql": "^2.17.1",
     "source-map-support": "^0.5.12",
-    "typeorm": "^0.2.17"
+    "typeorm": "^0.2.25"
   }
 }
